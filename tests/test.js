@@ -22,12 +22,12 @@
 
 
 var tape = require( 'tape' );
-var newton = require( './main.js' );
+var newton = require( '../lib/main.js' );
 var ndarray = require( '@stdlib/ndarray' );
-var Float64Array = require( '@stdlib/array/float64' );
 var abs = require( '@stdlib/math/base/special/abs' );
 var exp = require( '@stdlib/math/base/special/exp' );
 var pow = require( '@stdlib/math/base/special/pow' );
+var Float64Array = require( '@stdlib/array/float64' );
 
 tape( 'main export is an object', function test( t ) {
 	t.ok( true, 'file does not throw' );
@@ -60,14 +60,14 @@ tape( 'newtonsMethod optimizes a simple quadratic function', function test( t ) 
 
 tape( 'newtonsMethod optimizes the Rosenbrock function', function test( t ) {
 	var array2d = ndarray.array;
-	var initialX = array2d( new Float64Array( [0.95, 0.95] ), {
+	var initialX = array2d( new Float64Array( [0, 0] ), {
 		'shape': [2]
 	} );
 	
 	// Run with optimized parameters for this specific function
 	var result = newton.newtonsMethod( newton.rosenbrock, initialX, {
-		'tolerance': 1e-2,     
-		'maxIterations': 500, 
+		'tolerance': 1e-6,     
+		'maxIterations': 5000, 
 		'useLineSearch': true,
 		'stepSize': 0.1        
 	} );
@@ -77,13 +77,35 @@ tape( 'newtonsMethod optimizes the Rosenbrock function', function test( t ) {
 	// Verify we're in the correct basin
 	var x = result.solution.get( 0 );
 	var y = result.solution.get( 1 );
-	
-	t.ok( x > 0.7 && x < 1.3, 'x coordinate in correct region' );
-	t.ok( y > 0.7 && y < 1.3, 'y coordinate in correct region' );
+	t.ok( result.converged, 'optimization converged' );
+	t.ok( x > 0.9 && x < 1.1, 'x coordinate in correct region' );
+	t.ok( y > 0.9 && y < 1.1, 'y coordinate in correct region' );
 	t.ok( result.value >= 0, 'function value physically meaningful' );
 	
 	t.end();
 } );
+
+tape('newtonsMethod optimizes the Himmelblau function', function test(t) {
+    var array2d = ndarray.array;
+    var initialX = array2d(new Float64Array([2, 3]), {
+        'shape': [2]
+    });
+
+    // Run with optimized parameters for this specific function
+    var result = newton.newtonsMethod(newton.himmelblau, initialX, {
+        'tolerance': 1e-6,
+        'maxIterations': 5000,
+        'useLineSearch': true,
+        'stepSize': 0.1
+    });
+
+    t.ok(result.value < 0.5, 'function value decreased from starting point');
+    t.ok(result.converged, 'optimization converged');
+    t.ok(result.value >= 0, 'function value physically meaningful');
+
+    t.end();
+});
+
 
 tape( 'newtonsMethod optimizes a bowl function with multiple starting points', function test( t ) {
 	// Bowl function f(x,y) = (x-3)^2 + (y+2)^2, minimum at (3,-2)

@@ -7,19 +7,19 @@ A JavaScript implementation of Newton's method for unconstrained numerical optim
 Newton's method is a second-order optimization technique that uses both gradient and Hessian information to iteratively find the minimum of a function. This implementation features:
 
 - Numerical gradient and Hessian computation via finite differences
-- A Linear System solver using stdlib BLAS for computing Newton steps
+- A Linear System solver using `stdlib` BLAS for computing Newton steps
 - Testing across various function types
 
 ## stdlib Integration and showcase
 
-This project heavily utilizes stdlib packages for computing:
+This project heavily utilizes `stdlib` packages for computing:
 
 - **@stdlib/array**: For typed arrays (Float64Array)
 - **@stdlib/ndarray**: For n-dimensional array manipulation
 - **@stdlib/blas**: For basic linear algebra operations
 - **@stdlib/math**: For mathematical functions and operations
 
-The implementation demonstrates how stdlib can be used as a foundation for building advanced numerical algorithms with JavaScript.
+The implementation demonstrates how `stdlib` can be used as a foundation for building advanced numerical algorithms with JavaScript.
 
 ## Implementation Details
 
@@ -43,9 +43,10 @@ The test file verifies the correctness and performance of the implementation thr
 
 1. **Function Optimization Tests**
    - Simple quadratic functions with known minima
-   - Rosenbrock function (challenging optimization benchmark)
+   - Rosenbrock function and Himmelblau function (optimization benchmark)
    - Bowl function with multiple starting points (testing robustness)
    - Exponential functions (non-quadratic behavior)
+
 
 2. **Numerical Derivative Tests**
    - Gradient computation accuracy
@@ -86,5 +87,21 @@ npm test
 
 # Run example optimization
 npm start
+
+# Run visualization of the Rosenbrock algorithm optimized from (0, 0)
+npm visualize
 ```
+
+## Visualizer with `stdlib/plot`
+
+The plot.js file offers a visualization of Newton's Method applied to the Rosenbrock function, starting from an initial guess of 0,0 in SVG format using `stdlib/plot`. To generate your own custom plots, modify the following parameters:
+- **Initial Guess**: To modify the starting poinnt of the plot.
+- **Test Funcntion**: To change the used Test function between the Rosenbrock and Himmelblau functions.
+- **Plot API Parameters**: To modify the look and scale of the resultant plot.
+
+Then simply run ```npm visualize``` to generate the SVG output file.
+
+## Conclusion
+
 This project demonstrates how stdlib provides a foundation for implementing optimization algorithms in JavaScript with clean and maintainable code.
+

@@ -2,10 +2,11 @@
   "name": "stdlib-showcase",
   "version": "0.1.0",
   "description": "A showcase of Newton's Method for numerical optimization using the stdlib package",
-  "main": "main.js",
+  "main": "lib/main.js",
   "scripts": {
-    "test": "tape test.js",
-    "start": "node main.js"
+    "test": "tape tests/test.js",
+    "start": "node lib/main.js",
+    "visualize": "node visualization/plot.js"
   },
   "author": "Don Roy Chacko",
   "license": "Apache-2.0",
@@ -17,6 +18,7 @@
     "@stdlib/plot": "^0.3.3"
   },
   "devDependencies": {
+    "esbuild": "^0.19.0",
     "tape": "^5.9.0"
   },
   "keywords": [
