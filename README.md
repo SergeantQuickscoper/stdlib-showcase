@@ -57,8 +57,11 @@ The tests focus on 2D optimization problems which are easier to visualize and re
 ## Usage Example
 
 ```javascript
+// Use ndarrays from @stdlib
+var array2d = ndarray.array;
+
 // Create initial point
-var initialX = array2d( new Float64Array([0, 0]), { 'shape': [2] } );
+var initialX = array2d( new Float64Array([0, 0]), { 'shape': [2] } ); 
 
 // Options for the optimizer
 var options = {
