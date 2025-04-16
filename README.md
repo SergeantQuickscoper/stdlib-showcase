@@ -58,7 +58,7 @@ The tests focus on 2D optimization problems which are easier to visualize and re
 
 ```javascript
 // Create initial point
-var initialX = array2d(new Float64Array([0, 0]), { 'shape': [2] });
+var initialX = array2d( new Float64Array([0, 0]), { 'shape': [2] } );
 
 // Options for the optimizer
 var options = {
@@ -68,12 +68,12 @@ var options = {
 };
 
 // Run optimization
-var result = newtonsMethod(targetFunction, initialX, options);
+var result = newtonsMethod( targetFunction, initialX, options );
 
-console.log('Solution:', [result.solution.get(0), result.solution.get(1)]);
-console.log('Function value:', result.value);
-console.log('Iterations:', result.iterations);
-console.log('Converged:', result.converged);
+console.log( 'Solution:', [result.solution.get(0), result.solution.get(1)] );
+console.log( 'Function value:', result.value );
+console.log( 'Iterations:', result.iterations );
+console.log( 'Converged:', result.converged );
 ```
 
 ## Installation and Running
