@@ -40,8 +40,8 @@ tape( 'main export is an object', function test( t ) {
 
 tape( 'newtonsMethod optimizes a simple quadratic function', function test( t ) {
 	var array2d = ndarray.array;
-	var initialX = array2d( new Float64Array( [1, 1] ), {
-		'shape': [2]
+	var initialX = array2d( new Float64Array( [ 1, 1 ] ), {
+		'shape': [ 2 ]
 	} );
 	
 	// Simple quadratic function f(x) = x^2 + y^2, minimum at (0,0)
@@ -61,7 +61,7 @@ tape( 'newtonsMethod optimizes a simple quadratic function', function test( t ) 
 tape( 'newtonsMethod optimizes the Rosenbrock function', function test( t ) {
 	var array2d = ndarray.array;
 	var initialX = array2d( new Float64Array( [0, 0] ), {
-		'shape': [2]
+		'shape': [ 2 ]
 	} );
 	
 	// Run with optimized parameters for this specific function
@@ -87,8 +87,8 @@ tape( 'newtonsMethod optimizes the Rosenbrock function', function test( t ) {
 
 tape('newtonsMethod optimizes the Himmelblau function', function test(t) {
     var array2d = ndarray.array;
-    var initialX = array2d(new Float64Array([2, 3]), {
-        'shape': [2]
+    var initialX = array2d(new Float64Array([ 2, 3 ]), {
+        'shape': [ 2 ]
     });
 
     // Run with optimized parameters for this specific function
@@ -115,15 +115,15 @@ tape( 'newtonsMethod optimizes a bowl function with multiple starting points', f
 	
 	var array2d = ndarray.array;
 	var startingPoints = [
-		[0, 0],    // Origin
-		[10, 10],  // Far away
-		[3, 0],    // Correct x, wrong y
-		[0, -2]    // Wrong x, correct y
+		[ 0, 0 ],    // Origin
+		[ 10, 10 ],  // Far away
+		[ 3, 0 ],    // Correct x, wrong y
+		[ 0, -2 ]    // Wrong x, correct y
 	];
 	
 	startingPoints.forEach( function( point, i ) {
 		var initialX = array2d( new Float64Array( point ), {
-			'shape': [2]
+			'shape': [ 2 ]
 		} );
 		
 		var result = newton.newtonsMethod( bowl, initialX );
@@ -143,8 +143,8 @@ tape( 'newtonsMethod handles non-quadratic functions', function test( t ) {
 	}
 	
 	var array2d = ndarray.array;
-	var initialX = array2d( new Float64Array( [0.5, 0.5] ), {
-		'shape': [2]
+	var initialX = array2d( new Float64Array( [ 0.5, 0.5 ] ), {
+		'shape': [ 2 ]
 	} );
 	
 	var result = newton.newtonsMethod( expFunction, initialX, {
@@ -160,8 +160,8 @@ tape( 'newtonsMethod handles non-quadratic functions', function test( t ) {
 
 tape( 'numericalGradient correctly computes gradient', function test( t ) {
 	var array2d = ndarray.array;
-	var point = array2d( new Float64Array( [3, 2] ), {
-		'shape': [2]
+	var point = array2d( new Float64Array( [ 3, 2 ] ), {
+		'shape': [ 2 ]
 	} );
 	
 	// f(x,y) = x^2 + 2y^2, gradient at (3,2) is (6,8)
@@ -178,8 +178,8 @@ tape( 'numericalGradient correctly computes gradient', function test( t ) {
 
 tape( 'numericalHessian correctly computes Hessian matrix', function test( t ) {
 	var array2d = ndarray.array;
-	var point = array2d( new Float64Array( [1, 1] ), {
-		'shape': [2]
+	var point = array2d( new Float64Array( [ 1,  1] ), {
+		'shape': [ 2 ]
 	} );
 	
 	// f(x,y) = x^2 + xy + 2y^2, Hessian is [[2,1],[1,4]]
